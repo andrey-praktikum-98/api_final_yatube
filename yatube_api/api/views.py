@@ -31,16 +31,15 @@ class GroupViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class FollowViewSet(
-        mixins.CreateModelMixin, mixins.ListModelMixin, 
-        mixins.RetrieveModelMixin, viewsets.GenericViewSet
-    ):
+        mixins.CreateModelMixin, mixins.ListModelMixin,
+        mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+
     serializer_class = FollowSerializer
     permission_classes = [IsAuthenticated, ]
     filter_backends = (filters.SearchFilter,)
     filterset_fields = ('follower__username', 'following__username')
     search_fields = ('following__username',)
 
-    
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
