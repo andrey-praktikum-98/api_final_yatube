@@ -7,7 +7,7 @@ app_name = 'api'
 
 router = SimpleRouter()
 router.register('posts', PostViewSet)
-router.register('follow', FollowViewSet)
+router.register('follow', FollowViewSet, basename='follow')
 router.register('groups', GroupViewSet)
 router.register(r'posts/(?P<post_id>\d+)/comments',
                 CommentViewSet, basename='comment')
